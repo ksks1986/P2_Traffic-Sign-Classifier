@@ -17,6 +17,11 @@
 [image9]: ./examples/Image3.jpg "Traffic Sign 3"
 [image10]: ./examples/Image4.jpg "Traffic Sign 4"
 [image11]: ./examples/Image5.jpg "Traffic Sign 5"
+[image12]: ./examples/bar1.jpg "Bar Chart Traffic Sign 1"
+[image13]: ./examples/bar2.jpg "Bar Chart Traffic Sign 2"
+[image14]: ./examples/bar3.jpg "Bar Chart Traffic Sign 3"
+[image15]: ./examples/bar4.jpg "Bar Chart Traffic Sign 4"
+[image16]: ./examples/bar5.jpg "Bar Chart Traffic Sign 5"
 
 **Build a Traffic Sign Recognition Project**
 
@@ -240,6 +245,7 @@ For the third image ...
 ![alt text][image14]
 
 For the forth image ... 
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | .60         			| Stop sign   									| 
@@ -252,6 +258,7 @@ For the forth image ...
 
 
 For the fifth image ... 
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | .60         			| Stop sign   									| 
