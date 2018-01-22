@@ -37,7 +37,7 @@ The goals / steps of this project are the following:
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [project code](https://github.com/ksks1986/P2_Traffic-Sign-Classifier/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [project code](https://github.com/ksks1986/P2_Traffic-Sign-Classifier/)
 
 ### Data Set Summary & Exploration
 
@@ -128,12 +128,12 @@ Parameter initialize is mean=0 and sigma=0.05.
 
 
 Data Augmentation parameters are here:
-*angle range = +/- 5 deg
-*scale range = 0.5 to 1.5
-*shift range = 5 pixels
-*brightness max delta = 0.5
-*contrast lower = 0.1
-*contrast upper = 2.5
+* angle range = +/- 5 deg
+* scale range = 0.5 to 1.5
+* shift range = 5 pixels
+* brightness max delta = 0.5
+* contrast lower = 0.1
+* contrast upper = 2.5
 
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
@@ -177,11 +177,11 @@ Here are five German traffic signs that I found on the web, trimmed and resized 
 
 ![alt text][image7]
 
-*The first image might be difficult to classify because this image is blur.
-*The second image might be difficult to classify because the sign is almost coverd by snow.
-*The third image might be difficult to classify because this image is blur.
-*The forth image might be difficult to classify because this image is blur and tilted.
-*The fifth image might be difficult to classify because this image is blur and lack a little.
+* The first image might be difficult to classify because this image is blur.
+* The second image might be difficult to classify because the sign is almost coverd by snow.
+* The third image might be difficult to classify because this image is blur.
+* The forth image might be difficult to classify because this image is blur and tilted.
+* The fifth image might be difficult to classify because this image is blur and lack a little.
 
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
