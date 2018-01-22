@@ -6,22 +6,18 @@
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.png "Visualization"
-[image2]: ./examples/sampleflatten.jpg "number of sample flatten"
-[image3]: ./examples/preprocess1.jpg "default image"
-[image4]: ./examples/preprocess2.jpg "grobal contrast normalization"
-[image5]: ./examples/dataAugmentation1.jpg "Affine"
-[image6]: ./examples/dataAugmentation2.jpg "contrast&brightness"
-[image7]: ./examples/Image1.jpg "Traffic Sign 1"
-[image8]: ./examples/Image2.jpg "Traffic Sign 2"
-[image9]: ./examples/Image3.jpg "Traffic Sign 3"
-[image10]: ./examples/Image4.jpg "Traffic Sign 4"
-[image11]: ./examples/Image5.jpg "Traffic Sign 5"
-[image12]: ./examples/bar1.jpg "Bar Chart Traffic Sign 1"
-[image13]: ./examples/bar2.jpg "Bar Chart Traffic Sign 2"
-[image14]: ./examples/bar3.jpg "Bar Chart Traffic Sign 3"
-[image15]: ./examples/bar4.jpg "Bar Chart Traffic Sign 4"
-[image16]: ./examples/bar5.jpg "Bar Chart Traffic Sign 5"
+[image1]: ./Image/visualization.png "Visualization"
+[image2]: ./Image/sampleflatten.png "number of sample flatten"
+[image3]: ./Image/preprocess1.png "default image"
+[image4]: ./Image/preprocess2.png "grobal contrast normalization"
+[image5]: ./Image/dataAugmentation1.png "Affine"
+[image6]: ./Image/dataAugmentation2.png "contrast&brightness"
+[image7]: ./Image/Sign.png "Traffic Sign 1"
+[image8]: ./Image/bar1.png "Bar Chart Traffic Sign 1"
+[image9]: ./Image/bar2.png "Bar Chart Traffic Sign 2"
+[image10]: ./Image/bar3.png "Bar Chart Traffic Sign 3"
+[image11]: ./Image/bar4.png "Bar Chart Traffic Sign 4"
+[image12]: ./Image/bar5.png "Bar Chart Traffic Sign 5"
 
 **Build a Traffic Sign Recognition Project**
 
@@ -120,9 +116,7 @@ My final model consisted of the following layers:
 | (13)Leaky ReLU		| alpha 0.01        									|
 | (14)dropout		| keep prob 0.9        									|
 | (15)Fully connected		| input 84, outputs 43(n_classes)        									|
-| Softmax				|         									|
-|						|												|
-|						|												|
+| (16)Softmax				|         									|
  
 
 
@@ -143,11 +137,11 @@ Data Augmentation parameters are here:
 
 My final model results were:
 * training set accuracy of ?
-->
+->99.6%
 * validation set accuracy of ? 
-->
+->96.3%
 * test set accuracy of ?
-->
+->94.4%
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
@@ -173,10 +167,9 @@ Dropout layer forces the model to reduce dependency of particular nodes, so it r
 
 #### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-Here are five German traffic signs that I found on the web:
+Here are five German traffic signs that I found on the web, trimmed and resized to 32*32 size:
 
-![alt text][image7] ![alt text][image8] ![alt text][image9] 
-![alt text][image10] ![alt text][image11]
+![alt text][image7]
 
 The first image might be difficult to classify because this image is blur.
 The second image might be difficult to classify because the sign is difficult to see because coverd snow.
@@ -191,81 +184,81 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Speed limit(100km/h)      		| Speed limit(50km/h)   									| 
+| General caution     			| General caution 										|
+| Speed limit(60km/h)					| Speed limit(60km/h)											|
+| Go straight or right	      		| Go straight or right					 				|
+| Right-of-way at the next inteersection			| Right-of-way at the next inteersection      							|
 
 
-The model was able to correctly guess XX of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in the XXth cell of the Ipython notebook.
+The code for making predictions on my final model is located in the 58th cell of the Ipython notebook.
 
 For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .33         			| Speed limit(50km/h)   									| 
+| .26     				| Speed limit(80km/h) 										|
+| .23					| Speed limit(100km/h)											|
+| .07	      			| Speed limit(30km/h)					 				|
+| .03				    | No passing for vehicles over 3.5 metric tons      							|
 
 
-![alt text][image12]
+![alt text][image8]
 
 
 For the second image ... 
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .93         			| General caution   									| 
+| .07     				| Traffic signals 										|
+| .00					| Pedestrians											|
+| .00	      			| Wild animals crossing					 				|
+| .00				    | Road work      							|
 
 
-![alt text][image13]
+![alt text][image9]
 
 
 For the third image ... 
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+|1.00         			| Speed limit(60km/h)   									| 
+| .00     				| Speed limit(80km/h) 										|
+| .00					| Turn right ahead											|
+| .00	      			| Speed limit(50km/h)					 				|
+| .00				    | Go straight or right      							|
 
-![alt text][image14]
+![alt text][image10]
 
 For the forth image ... 
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .42         			| Go straight or right   									| 
+| .18     				| Priority road 										|
+| .15					| Turn left ahead											|
+| .11	      			| Ahead only					 				|
+| .07				    | Keep right      							|
 
-![alt text][image15]
+![alt text][image11]
 
 
 For the fifth image ... 
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+|1.00         			| Right-of-way at the next intersection   									| 
+| .00     				| Beware of ice/snow 										|
+| .00					| Road work											|
+| .00	      			| Dangerous curve to the right					 				|
+| .00				    | Bicycles crossing      							|
 
-![alt text][image16]
+![alt text][image12]
 
