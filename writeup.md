@@ -37,7 +37,7 @@ The goals / steps of this project are the following:
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [project code](https://github.com/ksks1986/P2_Traffic-Sign-Classifier)
+You're reading it! and here is a link to my [project code](https://github.com/ksks1986/P2_Traffic-Sign-Classifier/Traffic_Sign_Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
@@ -74,7 +74,7 @@ Here is a histgram after flattening.
 
 ![alt text][image2]
 
-Next, I do the global contrast normalization which means mean subtraction and then standard deviation division for each image
+Next, I do the global contrast normalization which means subtraction and then standard deviation division for each image
 because the images' contrast differ from each other.
 Here is an example of a traffic sign image before and after normalization.
 
@@ -82,7 +82,7 @@ Here is an example of a traffic sign image before and after normalization.
 ![alt text][image4]
 
 To add more data to the the data set, I used the following techniques in traing phase because padding out the data.
-Firstly I use affine transformation.
+Firstly I use random affine transformation.
 Here is an example of an original image and an augmented image:
 
 ![alt text][image3]
@@ -102,21 +102,22 @@ My final model consisted of the following layers:
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | (1)Input         		| 32x32x3 RGB image   							| 
-| (2)Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x6 	|
-| (3)Leaky ReLU					| alpha 0.01												|
-| (4)Max pooling	      	| 2x2 stride,  outputs 14x14x6 				|
-| (5)Convolution 5x5	    | 1x1 stride, valid padding, outputs 10x10x16      									|
-| (6)Leaky ReLU		| alpha 0.01        									|
-| (7)Max pooling		| 2x2 stride,  outputs 5x5x16        									|
-| (8)dropout		| keep prob 0.9        									|
-| (9)Fully connected		| input is flatten (1)(4)(7). inputs 4648, outputs 120        									|
-| (10)Leaky ReLU		| alpha 0.01        									|
-| (11)dropout		| keep prob 0.9        									|
-| (12)Fully connected		| input 120, outputs 84        									|
-| (13)Leaky ReLU		| alpha 0.01        									|
-| (14)dropout		| keep prob 0.9        									|
-| (15)Fully connected		| input 84, outputs 43(n_classes)        									|
-| (16)Softmax				|         									|
+| (2)Data Augmentation         		| random affine transform, contrast and brightness   							| 
+| (3)Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x6 	|
+| (4)Leaky ReLU					| alpha 0.01												|
+| (5)Max pooling	      	| 2x2 stride,  outputs 14x14x6 				|
+| (6)Convolution 5x5	    | 1x1 stride, valid padding, outputs 10x10x16      									|
+| (7)Leaky ReLU		| alpha 0.01        									|
+| (8)Max pooling		| 2x2 stride,  outputs 5x5x16        									|
+| (9)dropout		| keep prob 0.9        									|
+| (10)Fully connected		| input is flatten (1)(4)(7). inputs 4648, outputs 120        									|
+| (11)Leaky ReLU		| alpha 0.01        									|
+| (12)dropout		| keep prob 0.9        									|
+| (13)Fully connected		| input 120, outputs 84        									|
+| (14)Leaky ReLU		| alpha 0.01        									|
+| (15)dropout		| keep prob 0.9        									|
+| (16)Fully connected		| input 84, outputs 43(n_classes)        									|
+| (17)Softmax				|         									|
  
 
 
@@ -124,13 +125,15 @@ My final model consisted of the following layers:
 
 To train the model, I used an Adam optimizer, learning rate 0.0007, batch size 32 and number of epochs 70.
 Parameter initialize is mean=0 and sigma=0.05.
+
+
 Data Augmentation parameters are here:
- angle range = +/- 5 deg
- scale range = 0.5 to 1.5
- shift range = 5 pixels
- brightness max delta = 0.5
- contrast lower = 0.1
- contrast upper = 2.5
+*angle range = +/- 5 deg
+*scale range = 0.5 to 1.5
+*shift range = 5 pixels
+*brightness max delta = 0.5
+*contrast lower = 0.1
+*contrast upper = 2.5
 
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
@@ -143,23 +146,26 @@ My final model results were:
 * test set accuracy of ?
 ->94.4%
 
-If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
+
 ->LeNet is chosen because LeNet is proven architecture for image recognition.
 
 * What were some problems with the initial architecture?
-->Validation accuracy dosen't reach 93%.
+
+->Validation accuracy dosen't reach 93% althogh training accuracy exceeds 93%.
 
 * How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
+
 ->Firstly I plot the learning curve and validation curve to see the model is overfitting or underfitting.
   When the model is overfitting, I increase data augmentation parameter and add the dropout to reduce overfitting.
   When the model is underfitting, I increase the model complexity by adding layers or nodes.
   The final architecture isn't much overfitting and underfitting.
 
 * Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
-Dropout keep_prob was tuned 0.9 because training accuracy gets worse when I use less than 0.9.
-Also, epoch and batch number, data augmentation parameters are tuned by trial and error.
+  What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+
+->Dropout keep_prob was tuned 0.9 because training accuracy gets worse when I use less than 0.9.
+Also, epoch and batch number, data augmentation parameters are tuned by trial and error for better validation accuracy.
 Convolution layer works well for image recognition because less parameters and robustness of a few variation of image.
 Dropout layer forces the model to reduce dependency of particular nodes, so it reduce overfitting.
 
@@ -171,11 +177,11 @@ Here are five German traffic signs that I found on the web, trimmed and resized 
 
 ![alt text][image7]
 
-The first image might be difficult to classify because this image is blur.
-The second image might be difficult to classify because the sign is difficult to see because coverd snow.
-The third image might be difficult to classify because this image is blur.
-The forth image might be difficult to classify because this image is tilted.
-The fifth image might be difficult to classify because this image is blur and lack a little.
+*The first image might be difficult to classify because this image is blur.
+*The second image might be difficult to classify because the sign is almost coverd by snow.
+*The third image might be difficult to classify because this image is blur.
+*The forth image might be difficult to classify because this image is blur and tilted.
+*The fifth image might be difficult to classify because this image is blur and lack a little.
 
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
@@ -191,13 +197,15 @@ Here are the results of the prediction:
 | Right-of-way at the next inteersection			| Right-of-way at the next inteersection      							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This is approximately valid accuracy for the testset accuracy 94.4%.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in the 58th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the first image, the model has relatively the same predictions for "speed limit(50km/h, 80km/h, 100km/h)", and the image does contain a speed limit sign. 
+Although the true limit number is 100km/h, the model predicted 50km/h because I think the blur of character makes miss-recognize.
+The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -211,7 +219,8 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 ![alt text][image8]
 
 
-For the second image ... 
+For the second image, the model has strong confidence to predict "General caution"(probability of 0.93). This is the right prediction.
+The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -225,7 +234,8 @@ For the second image ...
 ![alt text][image9]
 
 
-For the third image ... 
+For the third image, the model has strong confidence to predict "Speed limit(60km/h)" (probability of almost 1.00). This is the right prediction.
+The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -237,7 +247,9 @@ For the third image ...
 
 ![alt text][image10]
 
-For the forth image ... 
+For the forth image, the model is relatively sure that this is "Go straight or right"(probability of 0.42 against second prediction probability 0.18) than others.
+But probability of 0.42 isn't strong confidence, the reliability of this prediction isn't much high.
+The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -250,7 +262,8 @@ For the forth image ...
 ![alt text][image11]
 
 
-For the fifth image ... 
+For the fifth image, the model has strong confidence to predict "Right-of-way at the next intersetion"(probability of almost 1.00). This is the right prediction
+The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
